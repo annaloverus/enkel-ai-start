@@ -2,21 +2,21 @@
 
 En praktisk guide för dig som vill börja jobba med personliga AI-processer — utan att vara utvecklare.
 
-Det här repot visar hur du sätter upp två verktyg: **Obsidian** (din kunskapsbas) och **Claude Code** (din AI-assistent). Tillsammans bildar de ett system där du kan tänka, skriva och automatisera på ett sätt som passar hur just du jobbar.
+Det här repot är ett startpaket. Du laddar ner det, öppnar det i Claude Code och pekar det mot ditt Obsidian-valv. Sedan har du ett system där Claude kan läsa och skriva dina anteckningar, hjälpa dig planera veckan och utföra återkommande uppgifter.
 
 ---
 
 ## Vad gör de två verktygen?
 
 ### Obsidian
-Obsidian är en app för anteckningar och kunskapshantering. Du skriver i vanliga Markdown-filer (text) som sparas lokalt på din dator (eller i iCloud/Dropbox om du vill). Det finns ingen inlåsning — filerna är dina.
+Obsidian är en app för anteckningar och kunskapshantering. Du skriver i vanliga textfiler (Markdown) som sparas lokalt på din dator — eller i iCloud/Dropbox om du vill. Det finns ingen inlåsning. Filerna är dina.
 
-I ett AI-arbetsflöde fungerar Obsidian som **minnet**. Här samlar du anteckningar, utkast, veckoplaner, budgetar och allt annat du vill att Claude ska kunna läsa och skriva till. Eftersom det är vanliga textfiler kan Claude läsa och uppdatera dem direkt.
+I det här systemet fungerar Obsidian som **minnet**. Här samlar du anteckningar, utkast, veckoplaner och allt annat du vill att Claude ska kunna läsa och skriva till.
 
 ### Claude Code
-Claude Code är Anthropics officiella app för att jobba med Claude som en aktiv assistent — inte bara en chattbot. Du kan ge Claude tillgång till filer på din dator, köra kommandon och bygga automatiserade flöden.
+Claude Code är Anthropics officiella app för att jobba med Claude som en aktiv assistent — inte bara en chattbot. Du öppnar en mapp på din dator, och Claude kan läsa och skriva filer direkt i den.
 
-I ett personligt arbetsflöde fungerar Claude Code som **utföraren**. Den läser dina Obsidian-filer, skriver nya anteckningar, hjälper dig tänka igenom beslut och kan utföra återkommande uppgifter (som att sammanfatta veckan eller kategorisera utgifter).
+I det här systemet fungerar Claude Code som **utföraren**. Den läser dina Obsidian-filer, skriver nya anteckningar, hjälper dig tänka igenom beslut och kan utföra återkommande uppgifter med hjälp av skills (mer om det nedan).
 
 ---
 
@@ -24,44 +24,70 @@ I ett personligt arbetsflöde fungerar Claude Code som **utföraren**. Den läse
 
 ### 1. Installera Obsidian
 
-1. Gå till [obsidian.md](https://obsidian.md) och ladda ner appen för din plattform.
-2. Öppna appen och skapa ett nytt **valv** (en mapp som Obsidian använder som sin databas).
-   - Lägg den i en mapp du känner dig trygg med att ge AI tillgång till, t.ex. `~/Dokument/AI/Obsidian/` eller en iCloud/OneDrive-mapp om du vill komma åt anteckningarna även på telefonen.
-3. Skapa din första fil — t.ex. `start.md` — och börja skriva.
-
-Det finns mycket att utforska i Obsidian, och hur man tänker kring att strukturera sin kunskap i filer och mappar, men du behöver inte göra det på en gång. En enkel mappstruktur räcker för att komma igång.
+1. Gå till [obsidian.md](https://obsidian.md) och ladda ner appen.
+2. Öppna appen och skapa ett nytt **valv** — det är bara en vanlig mapp som Obsidian använder som sin bas.
+   - Förslag: `Dokument/AI/Obsidian/` eller en iCloud/Dropbox-mapp om du vill komma åt anteckningarna på telefonen också.
+3. Skapa en första fil och börja skriva. Det räcker.
 
 ### 2. Installera Claude Code
 
 1. Gå till [claude.ai/code](https://claude.ai/code) och ladda ner **skrivbordsappen** för Mac eller Windows.
 2. Logga in med ditt Anthropic-konto (eller skapa ett på [anthropic.com](https://anthropic.com)).
-3. Öppna Claude Code och välj en **arbetsmapp** — välj samma mapp som ditt Obsidian-valv (Obsidian), eller en mapp ovanför den (AI).
 
-Claude Code ser alla filer i den mapp du öppnar. Det är det som gör att den kan läsa och skriva dina anteckningar.
+### 3. Ladda ner det här startpaketet
+
+Ladda ner (klona) det här repot till din dator. Om du inte är van vid Git: klicka på den gröna knappen **Code** uppe till höger på den här sidan och välj **Download ZIP**. Packa upp mappen och lägg den någonstans du hittar den, t.ex. `Dokument/AI/enkel-ai-start/`. Du kan döpa den till något roligare.
+
+### 4. Öppna startpaketet i Claude Code
+
+Öppna Claude Code och välj `enkel-ai-start/` (eller vad du döpte den till) som arbetsmapp. Nu ser Claude alla filer i den mappen — inklusive dina skills, jag kommer berätta mer om dem snart.
+
+### 5. Peka Claude mot ditt Obsidian-valv
+
+Öppna filen `CLAUDE.md` i startpaketet och fyll i sökvägen till ditt Obsidian-valv. Det är den instruktion Claude läser varje gång du startar en ny session.
+
+---
+
+## Mappstruktur
+
+```
+AI/
+├── enkel-ai-start/        ← det här repot, öppnas i Claude Code
+│   ├── CLAUDE.md          ← dina instruktioner till Claude
+│   └── skills/            ← återanvändbara kommandon
+│       ├── weekly-review.md
+│       └── meeting-prep.md
+└── Obsidian/              ← ditt Obsidian-valv
+    └── (dina anteckningar)
+```
+
+---
+
+## Skills
+
+Skills är instruktionsfiler som du anropar med ett snedstreck, t.ex. `/weekly-review`. Claude läser filen och utför uppgiften steg för steg.
+
+Det här startpaketet innehåller två exempelskills:
+
+- [`skills/weekly-review.md`](skills/weekly-review.md) — guidad veckoplanering som läser och skriver dina veckofiler i Obsidian
+- [`skills/meeting-prep.md`](skills/meeting-prep.md) — hjälp att förbereda inför ett möte, med genomtänkta diskussionspunkter och agenda
+
+Du kan redigera dem direkt, eller lägga till egna.
 
 ---
 
 ## Kom igång
 
-När båda verktygen är installerade kan du börja enkelt:
+1. Installera Obsidian och skapa ett valv.
+2. Installera Claude Code.
+3. Ladda ner det här repot och öppna mappen i Claude Code.
+4. Fyll i ditt Obsidian-valv i `CLAUDE.md`.
+5. Skriv `/weekly-review` och se vad som händer.
 
-1. Skapa en fil i Obsidian som heter `idag.md` och skriv tre saker du vill göra.
-2. Öppna Claude Code med din Obsidian-mapp som arbetsmapp.
-3. Skriv: *"Läs min idag.md och hjälp mig prioritera."*
-
-Det är allt. Därifrån bygger du vidare i din egen takt.
-
----
-
-## Nästa steg
-
-I det här repot finns snart också ett par exempelskills — återanvändbara instruktioner som du kan ge Claude för att automatisera återkommande uppgifter:
-
-- [`skills/weekly-review.md`](skills/weekly-review.md) — guidad veckoplanering
-- [`skills/write-post.md`](skills/write-post.md) — hjälp att skriva ett inlägg
+**En sak att tänka på:** Claude läser de filer du pekar den på. Be den aldrig analysera dokument från okända källor om du inte är beredd på att innehållet kan försöka påverka hur den beter sig med dolda instruktioner. Skills kan du lägga till från källor du litar på — men granska alltid en skill-fil innan du använder den. Det är vanlig text och tar inte många sekunder.
 
 ---
 
 ## Frågor?
 
-Det här repot underhålls av [Anna Loverus](https://www.annaloverus.com). Hittar du något som är fel eller otydligt — skapa gärna en issue i Github (eller skriv till mig på Linkedin).
+Det här repot underhålls av [Anna Loverus](https://www.annaloverus.com). Hittar du något som är fel eller otydligt — skapa gärna en issue på GitHub eller skriv till mig på LinkedIn.
