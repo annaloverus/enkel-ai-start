@@ -2,7 +2,9 @@
 
 En praktisk guide för dig som vill börja jobba med personliga AI-processer — utan att vara utvecklare.
 
-Det här repot är ett startpaket. Du laddar ner det, öppnar det i Claude Code och pekar det mot ditt Obsidian-valv. Sedan har du ett system där Claude kan läsa och skriva dina anteckningar, hjälpa dig planera veckan och utföra återkommande uppgifter.
+Det här repot är ett startpaket. Du laddar ner det, öppnar det i Claude Code och pekar det mot ditt Obsidian-valv. Men du kan vara lugn, vi går igenom vad det är, och hur du gör här nedanför.
+
+När du är klar har du ett system där Claude kan läsa och skriva dina anteckningar, hjälpa dig planera veckan och utföra återkommande uppgifter. Din kreativitet sätter gränserna.
 
 ---
 
